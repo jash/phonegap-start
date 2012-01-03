@@ -2,7 +2,7 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		= "com.k3integrations.jash.demo"
-	version 	= "0.0.1">
+	version 	= "0.0.2">
 
 	<name>Jash Demo</name>
 
@@ -24,7 +24,8 @@
 
 	<icon src="icon.png" gap:role="default" />
 
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/file"/>
+	<feature name="http://api.phonegap.com/1.0/media"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
 
 	<!-- sample preference specification -->
