@@ -4,7 +4,7 @@
 	id		= "com.k3integrations.jash.demo"
 	version 	= "0.0.1">
 
-	<name>Jash Demo: Demo of Phonegap</name>
+	<name>Jash Demo</name>
 
 	<description>
 		A program to help me learn
