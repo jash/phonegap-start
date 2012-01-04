@@ -20,18 +20,51 @@
         // Record audio
         mediaRec.startRecord();
 
-        // Stop recording after 10 sec
+        // Stop recording after 5 sec
         var recTime = 0;
         var recInterval = setInterval(function() {
             recTime = recTime + 1;
             setAudioPosition(recTime + " sec");
-            if (recTime >= 10) {
+            if (recTime >= 6) {
                 clearInterval(recInterval);
                 mediaRec.stopRecord();
+                mediaRec.release();
+                playAudio(src);
             }
         }, 1000);
     }
 
+    function playAudio(src) {
+        // Create Media object from src
+        my_media = new Media(src, onSuccess, onError);
+
+        // Play audio
+        my_media.play();
+        // Update media position every second
+        mediaTimer = setInterval(function() {
+            // get media position
+            my_media.getCurrentPosition(
+                // success callback
+                function(position) {
+                    if (position > -1) {
+                        setAudioPosition(position + " sec");
+                    }
+                    if (position > 4) {
+                        clearInterval(mediaTimer);
+                        mediaTimer.stop();
+                        mediaTimer.release();
+                        alert('all done');
+                    }
+                },
+                // error callback
+                function(e) {
+                    alert("Error getting pos=" + e);
+                    my_media.release();
+                }
+            );
+        }, 500);
+    }
+    
     // PhoneGap is ready
     //
     function onDeviceReady() {
@@ -41,7 +74,7 @@
     // onSuccess Callback
     //
     function onSuccess() {
-        console.log("recordAudio():Audio Success");
+        alert('Success');
     }
 
     // onError Callback 
@@ -62,5 +95,6 @@
 	<body>
     <p id="media">Recording audio...</p>
     <p id="audio_position"></p>
+    <div><a href="index.html">Back</a></div>
 	</body>
 </html>
